@@ -210,7 +210,7 @@ if (window.Swiper) {
     new Swiper(".heroSwiper", {
       loop: true,
       speed: 2000,
-      autoplay: { delay: 2000, disableOnInteraction: false },
+      // autoplay: { delay: 2000, disableOnInteraction: false },
       pagination: { el: ".swiper-pagination-vertical", clickable: true },
       navigation: {
         nextEl: ".swiper-button-next",

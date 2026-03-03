@@ -49,12 +49,12 @@ $banner_query = new WP_Query([
 
                             <div class="flex flex-col sm:flex-row gap-4">
                                 <a href="#demands"
-                                    class="px-8 py-4 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-all">
+                                    class="px-8 hover:text-white py-4 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-all">
                                     Our 7-Point Demands
                                 </a>
 
                                 <a href="#about"
-                                    class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/20 font-bold rounded-lg hover:bg-white hover:text-black transition-all">
+                                    class="px-8 visited:text-white py-4 bg-white/10 backdrop-blur-sm text-white border border-white/20 font-bold rounded-lg hover:bg-white hover:text-black transition-all">
                                     Learn Our History
                                 </a>
                             </div>
@@ -67,8 +67,8 @@ $banner_query = new WP_Query([
 
         </div>
 
-        <div class="swiper-button-next !text-white opacity-50 hover:opacity-100 !scale-75"></div>
-        <div class="swiper-button-prev !text-white opacity-50 hover:opacity-100 !scale-75"></div>
+        <div class="swiper-button-next !text-white opacity-50 hover:opacity-100 !scale-75 mr-5 lg:mr-10"></div>
+        <div class="swiper-button-prev !text-white opacity-50 hover:opacity-100 !scale-75 ml-5 lg:ml-10"></div>
         <div class="swiper-pagination !bottom-10"></div>
     </section>
 <?php endif; ?>
