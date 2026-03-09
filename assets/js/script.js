@@ -80,33 +80,24 @@ document.addEventListener("DOMContentLoaded", function () {
   /* =========================
      LightGallery
   ========================= */
-  const photoGallery = document.getElementById("photoGallery");
-  if (photoGallery && window.lightGallery) {
-    lightGallery(photoGallery, {
-      plugins: [lgZoom, lgThumbnail],
-      speed: 500,
-    });
-  }
+  /* =========================
+   LightGallery (Fixed)
+========================= */
+const galleries = ["photoGallery", "videoGallery", "featureVideo"];
 
-  const videoGallery = document.getElementById("videoGallery");
-  if (videoGallery && window.lightGallery) {
-    lightGallery(videoGallery, {
-      plugins: [lgZoom, lgThumbnail, lgVideo],
-      speed: 500,
-      videojs: true,
-      thumbnail: true,
-    });
-  }
-
-  const featureVideo = document.getElementById("featureVideo");
-  if (featureVideo && window.lightGallery) {
-    lightGallery(featureVideo, {
-      plugins: [lgZoom, lgThumbnail, lgVideo],
-      speed: 500,
-      videojs: true,
-      thumbnail: true,
-    });
-  }
+galleries.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.lightGallery) {
+        lightGallery(el, {
+            // Remove the plugins array entirely if using the bundle
+            // OR ensure the plugin variables are defined globally
+            speed: 500,
+            thumbnail: true,
+            zoom: true,
+            videojs: true
+        });
+    }
+});
 
   /* =========================
      Notice Slider
@@ -181,25 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-/* =========================
-   Mobile Menu
-========================= */
-const openMenu = document.getElementById("openMenu");
-const closeMenu = document.getElementById("closeMenu");
-const mobileMenu = document.getElementById("mobileMenu");
-const overlay = document.getElementById("overlay");
 
-if (openMenu && closeMenu && mobileMenu && overlay) {
-  openMenu.onclick = () => {
-    mobileMenu.classList.remove("translate-x-full");
-    overlay.classList.remove("opacity-0", "invisible");
-  };
-
-  closeMenu.onclick = overlay.onclick = () => {
-    mobileMenu.classList.add("translate-x-full");
-    overlay.classList.add("opacity-0", "invisible");
-  };
-}
 
 /* =========================
    Swiper Sliders

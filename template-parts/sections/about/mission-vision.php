@@ -14,6 +14,38 @@ $image   = get_field('mission_vision_image');
 // Get the Group Field
 $points_group = get_field('mission_vision_points');
 
+// Define Points Array for cleaner iteration
+$points = [
+    [
+        'title' => $points_group['mission_vision_point_one'] ?? '',
+        'desc'  => $points_group['mission_vision_point_one_desc'] ?? '',
+        'bg'    => 'bg-orange-50',
+        'text' => 'text-orange-600',
+        'hover' => 'group-hover:bg-orange-600 group-hover:text-white'
+    ],
+    [
+        'title' => $points_group['mission_vision_point_two'] ?? '',
+        'desc'  => $points_group['mission_vision_point_two_desc'] ?? '',
+        'bg'    => 'bg-green-50',
+        'text' => 'text-green-700',
+        'hover' => 'group-hover:bg-green-700 group-hover:text-white'
+    ],
+    [
+        'title' => $points_group['mission_vision_point_three'] ?? '',
+        'desc'  => $points_group['mission_vision_point_three_desc'] ?? '',
+        'bg'    => 'bg-orange-50',
+        'text' => 'text-orange-600',
+        'hover' => 'group-hover:bg-orange-600 group-hover:text-white'
+    ],
+    [
+        'title' => $points_group['mission_vision_point_four'] ?? '',
+        'desc'  => $points_group['mission_vision_point_four_desc'] ?? '',
+        'bg'    => 'bg-green-50',
+        'text' => 'text-green-700',
+        'hover' => 'group-hover:bg-green-700 group-hover:text-white'
+    ],
+];
+
 // Image Logic
 $image_url   = is_array($image) ? $image['url'] : $image;
 $final_image = $image_url ?: 'https://picsum.photos/800/800?random=1';
@@ -43,58 +75,25 @@ $final_image = $image_url ?: 'https://picsum.photos/800/800?random=1';
                 <?php endif; ?>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-8 gap-x-6">
-
-                    <?php if ($points_group) : ?>
-                        <div class="group flex items-start gap-4">
-                            <div class="w-12 h-12 shrink-0 flex items-center justify-center rounded-2xl bg-orange-50 text-orange-600 transition-colors group-hover:bg-orange-600 group-hover:text-white">
-                                <i class="fa-regular fa-hand-point-right"></i>
+                    <?php foreach ($points as $p) :
+                        if (!empty($p['title'])) : ?>
+                            <div class="group flex items-start gap-4">
+                                <div class="w-12 h-12 shrink-0 flex items-center justify-center rounded-2xl <?php echo $p['bg'] . ' ' . $p['text']; ?> transition-colors <?php echo $p['hover']; ?>">
+                                    <i class="fa-regular fa-hand-point-right"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-1 italic"><?php echo esc_html($p['title']); ?></h4>
+                                    <p class="text-sm text-slate-500 leading-snug"><?php echo esc_html($p['desc']); ?></p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800 mb-1 italic"><?php echo esc_html($points_group['mission_vision_point_one']); ?></h4>
-                                <p class="text-sm text-slate-500 leading-snug"><?php echo esc_html($points_group['mission_vision_point_one_desc']); ?></p>
-                            </div>
-                        </div>
-
-                        <div class="group flex items-start gap-4">
-                            <div class="w-12 h-12 shrink-0 flex items-center justify-center rounded-2xl bg-green-50 text-green-700 transition-colors group-hover:bg-green-700 group-hover:text-white">
-                                <i class="fa-regular fa-hand-point-right"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800 mb-1 italic"><?php echo esc_html($points_group['mission_vision_point_two']); ?></h4>
-                                <p class="text-sm text-slate-500 leading-snug"><?php echo esc_html($points_group['mission_vision_point_two_desc']); ?></p>
-                            </div>
-                        </div>
-
-                        <div class="group flex items-start gap-4">
-                            <div class="w-12 h-12 shrink-0 flex items-center justify-center rounded-2xl bg-orange-50 text-orange-600 transition-colors group-hover:bg-orange-600 group-hover:text-white">
-                                <i class="fa-regular fa-hand-point-right"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800 mb-1 italic"><?php echo esc_html($points_group['mission_vision_point_three']); ?></h4>
-                                <p class="text-sm text-slate-500 leading-snug"><?php echo esc_html($points_group['mission_vision_point_three_desc']); ?></p>
-                            </div>
-                        </div>
-
-                        <div class="group flex items-start gap-4">
-                            <div class="w-12 h-12 shrink-0 flex items-center justify-center rounded-2xl bg-green-50 text-green-700 transition-colors group-hover:bg-green-700 group-hover:text-white">
-                                <i class="fa-regular fa-hand-point-right"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800 mb-1 italic"><?php echo esc_html($points_group['mission_vision_point_four']); ?></h4>
-                                <p class="text-sm text-slate-500 leading-snug"><?php echo esc_html($points_group['mission_vision_point_four_desc']); ?></p>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
+                    <?php endif;
+                    endforeach; ?>
                 </div>
             </div>
 
             <div class="relative order-1 lg:order-2 mb-12 lg:mb-0">
                 <div class="relative z-10 aspect-square rounded-[2rem] overflow-hidden shadow-2xl">
-                    <img
-                        src="<?php echo esc_url($final_image); ?>"
-                        alt="Mission Vision Visual"
-                        class="w-full h-full object-cover  transition-all duration-700 transform hover:scale-105" />
+                    <img src="<?php echo esc_url($final_image); ?>" alt="Mission Vision Visual" class="w-full h-full object-cover transition-all duration-700 transform hover:scale-105" />
                 </div>
 
                 <div class="absolute -bottom-6 -right-4 md:-right-8 z-20 bg-white rounded-2xl shadow-xl p-6 border-b-4 border-green-700 animate-bounce-slow">
@@ -102,14 +101,9 @@ $final_image = $image_url ?: 'https://picsum.photos/800/800?random=1';
                         <span class="text-4xl md:text-5xl font-black text-green-800 leading-none">
                             <?php
                             $start_year = 2006;
-                            $current_year = (int)date('Y');
-                            $years_of_service = $current_year - $start_year;
-
-                            // Convert English numbers to Bengali numerals
-                            $eng_numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-                            $bn_numbers = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-
-                            echo str_replace($eng_numbers, $bn_numbers, $years_of_service) . '+';
+                            $years = (int)date('Y') - $start_year;
+                            $bn = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+                            echo str_replace(range(0, 9), $bn, $years) . '+';
                             ?>
                         </span>
                         <p class="text-slate-600 text-xs md:text-sm font-bold uppercase tracking-wider">
