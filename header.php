@@ -4,106 +4,147 @@
 <head>
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 	<?php wp_head(); ?>
+	<style>
+		/* Header Scroll Logic */
+		#mainHeader {
+			position: fixed;
+			top: 0;
+			width: 100%;
+			z-index: 1000;
+			transition: transform 0.4s ease;
+		}
+
+		.header-hidden {
+			transform: translateY(-100%);
+		}
+
+		a.custom-logo-link {
+			width: 100px;
+			background: white;
+			border-radius: 100%;
+
+			/* small mobile :320px. */
+			@media (max-width: 767px) {
+				width: 80px;
+
+			}
+		}
+
+		/* Menu Hover Effects */
+		.menu li a {
+			transition: all 0.3s ease;
+			padding-bottom: 4px;
+			border-bottom: 2px solid transparent;
+			font-size: 16px;
+			color: #FFFEEE;
+
+
+		}
+
+		.menu li a:hover {
+			color: #222 !important;
+			border-bottom: 2px solid #222;
+		}
+
+		.current-menu-item>a {
+			color: #222 !important;
+			border-bottom: 2px solid #222 !important;
+		}
+
+		/* Sidebar Overlay */
+		#mobileSidebar {
+			transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+		}
+
+		.nav-saffron {
+			background-color: #ff7722;
+		}
+	</style>
 </head>
 
-<body <?php body_class('font-sans'); ?>>
-	<?php wp_body_open(); ?>
+<body <?php body_class(); ?>>
 
-	<!-- Top Bar -->
-	<div class="fixed top-0 w-full z-50 bg-green-900 text-white text-xs sm:text-sm border-b border-orange-500/30">
-		<div class="container mx-auto px-4 py-2">
-			<div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-
-				<div class="flex justify-between gap-2 sm:items-center sm:gap-6">
-					<span class="flex items-center gap-2">
-						<i class="fas fa-phone text-orange-400"></i>
-						<a href="tel:+8801711234567" class="hover:text-orange-400 transition">
-							+880 1711-234567
-						</a>
-					</span>
-
-					<span class="flex items-center gap-2">
-						<i class="fas fa-envelope text-orange-400"></i>
-						<a href="mailto:info@hindumohajot.org" class="hover:text-orange-400 transition">
-							info@hindumohajot.org
-						</a>
-					</span>
-
-					<span class="hidden lg:flex items-center gap-2 text-gray-300">
-						<i class="fas fa-id-card text-orange-400"></i>
-						Reg No: C-R A-17485
-					</span>
+	<header id="mainHeader" class="nav-saffron shadow-xl">
+		<nav class="px-6 lg:px-12 py-2 flex  text-[#FFFEEE]">
+			<div class="container flex  justify-between items-center m-auto">
+				<div class="w-[80px]">
+					<?php
+					if (has_custom_logo()) {
+						// This outputs only the logo image wrapped in the WP-generated link
+						the_custom_logo();
+					} else {
+						// Fallback if no logo is set
+						echo '<a href="' . esc_url(home_url('/')) . '" class="flex justify-start h-20"></a>';
+					}
+					?>
 				</div>
 
-				<div class="flex items-center justify-center gap-3 sm:gap-4">
-					<span class="hidden sm:inline font-medium">Connect with Mohajot:</span>
-					<a href="#" class="hover:text-orange-400 transition"><i class="fab fa-facebook-f"></i></a>
-					<a href="#" class="hover:text-orange-400 transition"><i class="fab fa-twitter"></i></a>
-					<a href="#" class="hover:text-orange-400 transition"><i class="fab fa-youtube"></i></a>
+				<div class="hidden lg:flex items-center gap-8">
+					<?php wp_nav_menu(['theme_location' => 'primary-menu', 'container' => false, 'menu_class' => 'flex gap-8 menu']); ?>
 				</div>
 
+				<div class="hidden lg:flex items-center gap-4">
+					<a href="/registration" class="bg-black/10 hover:bg-black/20 border border-white/20 px-8 py-3 rounded-full text-xs font-black uppercase tracking-wider transition">
+						Registration
+					</a>
+
+					<a href="/donate" class="bg-[#FFFEEE] text-[#ff7722] hover:bg-white px-9 py-3 rounded-full text-xs font-black uppercase tracking-wider shadow-lg transition">
+						Donate Now
+					</a>
+				</div>
+
+				<button id="menuOpen" class="lg:hidden text-2xl"><i class="fas fa-bars"></i></button>
+			</div>
+		</nav>
+	</header>
+
+	<div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-[1999] hidden"></div>
+
+	<div id="mobileSidebar" class="fixed inset-y-0 right-[-100%] w-72 bg-[#ff7722] z-[2000] p-10 text-[#FFFEEE] shadow-2xl flex flex-col gap-8">
+		<button id="menuClose" class="text-2xl w-10 h-10"><i class="fas fa-times"></i></button>
+		<div class="flex flex-col gap-6 text-xl font-bold uppercase tracking-widest menu">
+			<?php wp_nav_menu(['theme_location' => 'primary-menu', 'container' => false]); ?>
+			<hr class="border-white/20">
+			<div class="hidden flex-col items-center gap-4">
+				<a href="/registration" class="bg-black/10 hover:bg-black/20 border border-white/20 px-8 py-3 rounded-full text-xs font-black uppercase tracking-wider transition">
+					Registration
+				</a>
+
+				<a href="/donate" class="bg-[#FFFEEE] text-[#ff7722] hover:bg-white px-9 py-3 rounded-full text-xs font-black uppercase tracking-wider shadow-lg transition">
+					Donate Now
+				</a>
 			</div>
 		</div>
 	</div>
 
-	<!-- HEADER -->
-	<header class="fixed top-[36px] w-full z-50 transition-all duration-300">
+	<script>
+		const sidebar = document.getElementById('mobileSidebar');
+		const overlay = document.getElementById('sidebarOverlay');
+		const header = document.getElementById('mainHeader');
+		let lastScroll = 0;
 
-		<nav class="bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
-			<div class="container mx-auto px-4 py-3">
-				<div class="flex items-center justify-between">
+		function toggleMenu(show) {
+			sidebar.style.right = show ? '0' : '-100%';
+			overlay.classList.toggle('hidden', !show);
+			document.body.style.overflow = show ? 'hidden' : 'auto';
+		}
 
-					<!-- Logo -->
-					<a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-3">
-						<?php if (has_custom_logo()) : ?>
-							<?php the_custom_logo(); ?>
-						<?php else : ?>
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/logo.png"
-								class="h-16 w-16 md:h-20 md:w-20 object-contain"
-								alt="<?php bloginfo('name'); ?>">
-						<?php endif; ?>
+		document.getElementById('menuOpen').onclick = () => toggleMenu(true);
+		document.getElementById('menuClose').onclick = () => toggleMenu(false);
+		overlay.onclick = () => toggleMenu(false);
 
-						<div class="hidden xl:block">
-							<h1 class="text-green-900 font-black text-lg leading-none">
-								<?php bloginfo('name'); ?>
-							</h1>
-							<p class="text-[10px] text-orange-600 font-bold uppercase tracking-tight">
-								<?php bloginfo('description'); ?>
-							</p>
-						</div>
-					</a>
+		window.addEventListener('scroll', () => {
+			let currentScroll = window.pageYOffset;
+			if (currentScroll > 100) {
+				header.classList.toggle('header-hidden', currentScroll > lastScroll);
+			}
+			lastScroll = currentScroll;
+		});
+	</script>
+	<?php wp_footer(); ?>
+</body>
 
-					<!-- Desktop Menu -->
-					<div class="hidden lg:flex items-center gap-2">
-						<?php
-						wp_nav_menu([
-							'theme_location' => 'primary-menu',
-							'container'      => false,
-							'menu_class'     => 'flex items-center gap-2',
-							'link_before'    => '<span class="px-4 py-2 text-gray-700 font-bold rounded-lg hover:bg-green-50 hover:text-green-900 transition">',
-							'link_after'     => '</span>',
-						]);
-						?>
-					</div>
-
-					<!-- Buttons -->
-					<div class="hidden lg:flex items-center gap-3">
-						<button class="px-5 py-2.5 rounded-full border-2 border-green-900 text-green-900 font-bold hover:bg-green-900 hover:text-white transition">
-							<i class="fas fa-user-plus mr-2"></i>Registration
-						</button>
-
-						<button class="px-6 py-2.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold shadow-md transition">
-							Donate Now
-						</button>
-					</div>
-
-					<!-- Mobile Toggle -->
-					<button id="openMenu" class="lg:hidden text-2xl text-green-900">
-						<i class="fas fa-bars"></i>
-					</button>
-
-				</div>
-			</div>
-		</nav>
-	</header>
+</html>

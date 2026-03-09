@@ -26,7 +26,7 @@ $banner_url = $featured_img;
                 </h1>
 
                 <nav class="flex items-center gap-2 text-sm text-gray-200" aria-label="Breadcrumb">
-                    <a href="<?php echo esc_url(home_url('/')); ?>" class="hover:text-orange-400 transition">
+                    <a href="<?php echo esc_url(home_url('/')); ?>" class="hover:text-[#ff7722] transition">
                         Home
                     </a>
                     <span>/</span>

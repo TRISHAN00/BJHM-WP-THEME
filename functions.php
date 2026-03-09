@@ -299,3 +299,27 @@ require get_template_directory() . '/inc/customizer.php';
 if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+// Add Tailwind classes to wp_nav_menu links
+add_filter('nav_menu_link_attributes', 'add_menu_link_class', 10, 3);
+function add_menu_link_class($atts, $item, $args)
+{
+	if ($args->theme_location == 'primary-menu') {
+		$atts['class'] = 'px-3 py-2 rounded-md text-sm font-medium transition-colors hover:text-[#ff7722]';
+	}
+	return $atts;
+}
+
+
+// Enable theme features
+add_theme_support('custom-logo');
+add_theme_support('menus');
+
+// Register menu
+register_nav_menus(['primary-menu' => __('Primary Header Menu', 'daksh')]);
+
+// Add classes to menu links
+add_filter('nav_menu_link_attributes', function ($atts) {
+	$atts['class'] = 'hover:text-black transition uppercase tracking-widest font-bold text-[11px]';
+	return $atts;
+}, 10, 1);
