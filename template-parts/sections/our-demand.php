@@ -51,6 +51,11 @@ $objectives_query = new WP_Query([
                     <?php echo wp_kses_post($section_description); ?>
                 </p>
             <?php endif; ?>
+
+            <div class="flex justify-center mt-8 gap-1">
+                <span class="w-12 h-1.5 bg-[#ff7722] rounded-full"></span>
+                <span class="w-2 h-1.5 bg-[#ff7722]/30 rounded-full"></span>
+            </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

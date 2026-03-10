@@ -47,7 +47,7 @@ $image    = get_field('about_left_image');
                                 <i class="fas fa-bullseye text-[#ff7722] text-xl"></i>
                             </div>
                             <div class="prose max-w-none">
-                                <h3 class="font-bold text-gray-800 text-lg mb-2">Our Mission</h3>
+                                <h3 class="font-bold text-gray-800 text-lg mb-2"><?php the_field('mission_title'); ?></h3>
                                 <?php the_field('mission'); ?>
                             </div>
                         </div>
@@ -59,18 +59,27 @@ $image    = get_field('about_left_image');
                                 <i class="fas fa-shield-alt text-[#ff7722] text-xl"></i>
                             </div>
                             <div class="prose max-w-none">
-                                <h3 class="font-bold text-gray-800 text-lg mb-2">Our Vision</h3>
+                                <h3 class="font-bold text-gray-800 text-lg mb-2"><?php the_field('vision_title'); ?></h3>
                                 <?php the_field('vision'); ?>
                             </div>
                         </div>
                     <?php endif; ?>
                 </div>
 
-                <a href="<?php echo esc_url(site_url('/about-us')); ?>"
-                    class="inline-flex items-center gap-2 rounded-full bg-[#ff7722] px-6 py-3 text-white font-semibold hover:bg-[#e6671e] transition">
-                    About Us
-                    <i class="fas fa-arrow-right"></i>
+
+                <a href="#" class="btn-common-main group relative inline-flex items-center justify-center px-10 py-4 font-black text-xs uppercase tracking-[0.2em] text-[#ff7722] transition-all duration-500 border-2 border-[#ff7722] rounded-full overflow-hidden hover:text-white">
+
+                    <span class="absolute inset-0 w-0 bg-[#ff7722] transition-all duration-500 ease-out group-hover:w-full"></span>
+
+                    <span class="relative z-10 flex items-center gap-3">
+                        বিস্তারিত দেখুন
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                        </svg>
+                    </span>
                 </a>
+
+            
             </div>
         </div>
     </div>

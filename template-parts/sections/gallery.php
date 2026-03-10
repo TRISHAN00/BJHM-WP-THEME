@@ -16,16 +16,22 @@ $activities_query = new WP_Query($args);
 
 <section class="py-20 bg-[#fdfbf7]">
     <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <span class="text-[#ff7722] font-bold text-sm uppercase tracking-widest">
+
+
+        <div class="text-center max-w-2xl mx-auto mb-20">
+            <span class="inline-block px-4 py-1 rounded-full bg-[#ff7722]/10 text-[#ff7722] font-bold uppercase tracking-widest text-[10px] mb-4">
                 <?php echo esc_html($gallery_label); ?>
             </span>
-            <h2 class="text-4xl md:text-5xl font-black text-gray-900 mt-4 mb-4">
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
                 <?php echo esc_html($gallery_title); ?>
             </h2>
-            <p class="text-gray-700 text-lg max-w-2xl mx-auto">
+            <p class="text-slate-500 mt-6 text-sm md:text-base font-medium leading-relaxed">
                 <?php echo esc_html($gallery_content); ?>
             </p>
+            <div class="flex justify-center mt-8 gap-1">
+                <span class="w-12 h-1.5 bg-[#ff7722] rounded-full"></span>
+                <span class="w-2 h-1.5 bg-[#ff7722]/30 rounded-full"></span>
+            </div>
         </div>
 
         <div id="photoGallery" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -52,10 +58,20 @@ $activities_query = new WP_Query($args);
         </div>
 
         <div class="text-center mt-16">
-            <a href="<?php echo site_url('/gallery'); ?>"
-                class="bg-[#ff7722] hover:bg-[#e0671d] text-white px-10 py-4 rounded-full font-bold transition-all duration-300 inline-flex items-center shadow-lg hover:shadow-xl hover:scale-105">
-                সম্পূর্ণ গ্যালারি দেখুন <i class="fas fa-images ml-2"></i>
+
+
+            <a href="#" class="btn-common-main group relative inline-flex items-center justify-center px-10 py-4 font-black text-xs uppercase tracking-[0.2em] text-[#ff7722] transition-all duration-500 border-2 border-[#ff7722] rounded-full overflow-hidden hover:text-white">
+
+                <span class="absolute inset-0 w-0 bg-[#ff7722] transition-all duration-500 ease-out group-hover:w-full"></span>
+
+                <span class="relative z-10 flex items-center gap-3">
+                    সম্পূর্ণ গ্যালারি দেখুন
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                    </svg>
+                </span>
             </a>
+
         </div>
     </div>
 </section>
