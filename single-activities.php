@@ -17,8 +17,8 @@
                 <?php endif; ?>
                 <span class="text-gray-500 italic"><?php echo get_the_date('j F, Y'); ?></span>
             </div>
-            <a href="<?php echo get_post_type_archive_link('activities'); ?>" class="text-gray-600 hover:text-gray-900 font-medium transition">
-                ← Back to Activities
+            <a href="<?php echo esc_url(home_url('/activities')); ?>" class="text-xs font-bold text-gray-400 hover:text-orange-600 transition flex items-center gap-2 mt-4 md:mt-0">
+                <i class="fas fa-chevron-left text-[10px]"></i> BACK TO ALL ACTIVITIES
             </a>
         </div>
 

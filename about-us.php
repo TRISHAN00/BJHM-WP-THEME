@@ -4,11 +4,12 @@
  * Template Name: About Us
  */
 
-get_header(); ?>
+get_header();
+?>
 
 <?php get_template_part('template-parts/sections/inner', 'banner'); ?>
 
-<!-- About Us  -->
+<!-- About Us -->
 <?php get_template_part('template-parts/sections/about/mission', 'vision'); ?>
 
 <!-- Board of Directors -->
@@ -16,6 +17,5 @@ get_header(); ?>
 
 <!-- Our Team -->
 <?php get_template_part('template-parts/sections/about/our', 'team'); ?>
-
 
 <?php get_footer(); ?>

@@ -7,7 +7,7 @@ $featured_img = get_the_post_thumbnail_url(get_the_ID(), 'full');
 $banner_url = $featured_img ?: get_template_directory_uri() . '/assets/default-banner.jpg'; // Fallback path
 ?>
 
-<section class="relative w-full h-[320px] sm:h-[380px] md:h-[420px] lg:h-[480px] overflow-hidden group">
+<section class="relative w-full h-[320px] sm:h-[380px] md:h-[420px] lg:h-[480px] mt-[90px] overflow-hidden group">
 
     <img
         src="<?php echo esc_url($banner_url); ?>"
