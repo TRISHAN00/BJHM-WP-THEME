@@ -25,7 +25,7 @@ $objectives_query = new WP_Query([
 <section id="demands" class="py-20 bg-gray-50 relative overflow-hidden">
 
     <?php if ($icon_url) : ?>
-        <div class="absolute top-10 left-10 lg:top-10 lg:left-20 h-20 w-20 lg:h-16 lg:w-16 animate-sudarshana opacity-70 z-10 pointer-events-none">
+        <div class="absolute top-10 left-4 lg:left-20 animate-sudarshana z-10 pointer-events-none opacity-60">
             <img src="<?php echo esc_url($icon_url); ?>"
                 alt="Sudarshana Chakra"
                 class="w-full h-full object-contain">
@@ -70,12 +70,8 @@ $objectives_query = new WP_Query([
                         <div class="w-12 h-12 <?php echo esc_attr($icon_bg); ?> rounded-lg flex items-center justify-center mb-6">
                             <i class="<?php echo esc_attr($icon_class . ' ' . $icon_color . ' text-xl'); ?>"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">
-                            <?php the_title(); ?>
-                        </h3>
-                        <div class="text-gray-600 text-sm leading-relaxed">
-                            <?php the_content(); ?>
-                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4"><?php the_title(); ?></h3>
+                        <div class="text-gray-600 text-sm leading-relaxed"><?php the_content(); ?></div>
                     </div>
                 <?php $i++;
                 endwhile;
@@ -86,7 +82,26 @@ $objectives_query = new WP_Query([
 </section>
 
 <style>
-    /* Custom infinite rotation animation */
+    /* Sudarshana Chakra Responsive & Aspect Ratio */
+    .animate-sudarshana {
+        width: 60px;
+        /* মোবাইল সাইজ */
+        aspect-ratio: 1 / 1;
+        animation: infinite-rotate 10s linear infinite;
+    }
+
+    @media (min-width: 768px) {
+        .animate-sudarshana {
+            width: 90px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .animate-sudarshana {
+            width: 120px;
+        }
+    }
+
     @keyframes infinite-rotate {
         from {
             transform: rotate(0deg);
@@ -95,9 +110,5 @@ $objectives_query = new WP_Query([
         to {
             transform: rotate(360deg);
         }
-    }
-
-    .animate-sudarshana {
-        animation: infinite-rotate 10s linear infinite;
     }
 </style>

@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
   /* =========================
      Local / Foreign Tabs
   ========================= */
@@ -40,9 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const group = btn.dataset.group;
         memberCards.forEach((card) => {
           card.style.display =
-            group === "all" || card.classList.contains(group)
-              ? "flex"
-              : "none";
+            group === "all" || card.classList.contains(group) ? "flex" : "none";
         });
       });
     });
@@ -83,21 +80,22 @@ document.addEventListener("DOMContentLoaded", function () {
   /* =========================
    LightGallery (Fixed)
 ========================= */
-const galleries = ["photoGallery", "videoGallery", "featureVideo"];
+  const galleries = ["photoGallery", "videoGallery", "featureVideo"];
 
-galleries.forEach(id => {
+  galleries.forEach((id) => {
     const el = document.getElementById(id);
     if (el && window.lightGallery) {
-        lightGallery(el, {
-            // Remove the plugins array entirely if using the bundle
-            // OR ensure the plugin variables are defined globally
-            speed: 500,
-            thumbnail: true,
-            zoom: true,
-            videojs: true
-        });
+      lightGallery(el, {
+        // Remove the plugins array entirely if using the bundle
+        // OR ensure the plugin variables are defined globally
+        plugins: [lgVideo, lgThumbnail, lgZoom],
+        speed: 500,
+        thumbnail: true,
+        zoom: true,
+        videojs: true,
+      });
     }
-});
+  });
 
   /* =========================
      Notice Slider
@@ -158,9 +156,18 @@ galleries.forEach(id => {
     const today = new Date();
     const banglaYear = today.getFullYear() - 593;
     const banglaMonths = [
-      "বৈশাখ", "জ্যৈষ্ঠ", "আষাঢ়", "শ্রাবণ",
-      "ভাদ্র", "আশ্বিন", "কার্তিক", "অগ্রহায়ণ",
-      "পৌষ", "মাঘ", "ফাল্গুন", "চৈত্র"
+      "বৈশাখ",
+      "জ্যৈষ্ঠ",
+      "আষাঢ়",
+      "শ্রাবণ",
+      "ভাদ্র",
+      "আশ্বিন",
+      "কার্তিক",
+      "অগ্রহায়ণ",
+      "পৌষ",
+      "মাঘ",
+      "ফাল্গুন",
+      "চৈত্র",
     ];
     return `${today.getDate()} ${banglaMonths[today.getMonth()]}, ${banglaYear}`;
   }
@@ -169,16 +176,12 @@ galleries.forEach(id => {
   if (banglaDateEl) {
     banglaDateEl.innerText = getBanglaDate();
   }
-
 });
-
-
 
 /* =========================
    Swiper Sliders
 ========================= */
 if (window.Swiper) {
-
   if (document.querySelector(".heroSwiper")) {
     new Swiper(".heroSwiper", {
       loop: true,
@@ -235,4 +238,48 @@ if (window.Swiper) {
       freeMode: { enabled: true, momentum: false },
     });
   }
+
+  if (document.querySelector(".event-slider")) {
+    new Swiper(".event-slider", {
+      slidesPerView: 2,
+      spaceBetween: 30,
+      loop: true,
+      navigation: {
+        nextEl: ".event-next",
+        prevEl: ".event-prev",
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      },
+    });
+  }
+
+  new Swiper(".activitiesSwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 24,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+    },
+  });
 }

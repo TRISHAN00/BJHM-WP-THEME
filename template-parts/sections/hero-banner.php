@@ -12,7 +12,7 @@ $banner_query = new WP_Query(['post_type' => 'banner', 'posts_per_page' => -1]);
             <?php while ($banner_query->have_posts()) : $banner_query->the_post();
                 $image = get_the_post_thumbnail_url(get_the_ID(), 'full');
             ?>
-                <div class="swiper-slide relative flex items-center">
+                <div class="swiper-slide relative flex flex-col items-center justify-center pt-[170px]">
                     <?php if ($image) : ?>
                         <img src="<?php echo esc_url($image); ?>" class="absolute inset-0 w-full h-full object-cover">
                     <?php endif; ?>
@@ -23,11 +23,16 @@ $banner_query = new WP_Query(['post_type' => 'banner', 'posts_per_page' => -1]);
                         <h1 class="text-4xl md:text-7xl font-black text-white mb-6 max-w-4xl mx-auto tracking-tight">
                             <?php the_title(); ?>
                         </h1>
+
                         <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
                             <?php echo wp_trim_words(get_the_excerpt(), 20); ?>
                         </p>
-                        <a href="#demands" class="px-10 py-4 bg-[#ff7722] text-white font-bold rounded-full hover:bg-orange-600 transition-all shadow-[0_10px_20px_rgba(255,119,34,0.3)]">
-                            Our Demands
+
+                        <a href="#demands" class="btn-common-main group relative inline-flex items-center justify-center px-10 py-4 font-black bg-[#ff7722] text-xs uppercase tracking-[0.2em] transition-all duration-500 border-2 border-[#ff7722] rounded-full overflow-hidden hover:border-[#1E293B]">
+                            <span class="absolute inset-0 w-0 bg-[#1E293B] transition-all duration-500 ease-out group-hover:w-full"></span>
+                            <span class="relative z-10 flex items-center gap-3 text-[#FFFEEE]">
+                                Our Demands
+                            </span>
                         </a>
                     </div>
                 </div>

@@ -226,7 +226,6 @@
 	<!-- Notice Board Second Option -->
 	<?php get_template_part('template-parts/sections/notice-ticker'); ?>
 
-
 	<!-- About Section (Mission & Vision) -->
 	<?php get_template_part('template-parts/sections/section-about'); ?>
 

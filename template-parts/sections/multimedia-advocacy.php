@@ -48,18 +48,20 @@ if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*
                     </span>
                 </a>
             </div>
-
             <div id="featureVideo" class="relative">
                 <?php if ($video_id) : ?>
-                    <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg"
-                        alt="Advocacy Video"
-                        class="rounded-3xl shadow-2xl w-full border-4 border-[#ff7722]/20" />
+                    <a href="https://www.youtube.com/watch?v=<?php echo $video_id; ?>"
+                        data-src="https://www.youtube.com/watch?v=<?php echo $video_id; ?>"
+                        class="block cursor-pointer">
 
-                    <a href="<?php echo esc_url($advocacy_video); ?>"
-                        target="_blank"
-                        class="absolute inset-0 flex items-center justify-center group">
-                        <div class="bg-[#ff7722] group-hover:scale-110 w-16 h-16 lg:h-20 lg:w-20 rounded-full flex items-center justify-center transition-all shadow-xl">
-                            <i class="fas fa-play text-white text-2xl ml-1"></i>
+                        <img src="https://img.youtube.com/vi/<?php echo $video_id; ?>/maxresdefault.jpg"
+                            alt="Advocacy Video"
+                            class="rounded-3xl shadow-2xl w-full border-4 border-[#ff7722]/20" />
+
+                        <div class="absolute inset-0 flex items-center justify-center group">
+                            <div class="bg-[#ff7722] group-hover:scale-110 w-16 h-16 lg:h-20 lg:w-20 rounded-full flex items-center justify-center transition-all shadow-xl">
+                                <i class="fas fa-play text-white text-2xl ml-1"></i>
+                            </div>
                         </div>
                     </a>
                 <?php endif; ?>

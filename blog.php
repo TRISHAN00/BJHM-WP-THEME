@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Activities
+ * Template Name: Blog
  */
 get_header();
 ?>
@@ -9,8 +9,7 @@ get_header();
 <!-- Inner Banner -->
 <?php get_template_part('template-parts/sections/inner', 'banner'); ?>
 
-<!-- Activities List -->
-<?php get_template_part('template-parts/sections/activities/activities', 'list'); ?>
-
+<!-- Blog Listing Area -->
+<?php get_template_part('template-parts/sections/blog/blog', 'list'); ?>
 
 <?php get_footer(); ?>

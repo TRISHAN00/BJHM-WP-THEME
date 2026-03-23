@@ -49,11 +49,17 @@
 		/* Active Menu & Hover Logic */
 		.menu li a {
 			position: relative;
-			font-size: 15px;
+			font-size: 13px;
 			font-weight: 600;
 			color: var(--brand-dark) !important;
 			padding: 10px 0;
 			transition: all 0.3s ease;
+
+			/* Normal desktop :992px. */
+			@media (min-width: 992px) and (max-width: 1200px) {
+				font-size: 11px;
+
+			}
 		}
 
 		/* Hover & Active State Border */
@@ -188,19 +194,57 @@
 <body <?php body_class(); ?>>
 
 	<header id="mainHeader">
-		<div class="top-bar hidden md:block">
+		<div class="top-bar hidden md:block" style="color: #FFFEEE;">
 			<div class="container mx-auto px-6 lg:px-12 flex justify-between items-center">
+
 				<div class="flex gap-6">
-					<span class="flex items-center gap-2"><i class="fas fa-phone-alt text-orange-400"></i> +880 1XXX-XXXXXX</span>
-					<span class="flex items-center gap-2"><i class="fas fa-envelope text-orange-400"></i> info@hindumohajot.org</span>
-					<span class="bg-white/10 px-3 py-0.5 rounded text-[11px] font-bold tracking-tight border border-white/10 uppercase">Reg No: C-R-A17485</span>
+					<?php if ($phone = get_theme_mod('topbar_phone')) : ?>
+						<a href="tel:<?php echo esc_attr($phone); ?>" class="flex items-center gap-2 hover:opacity-80 transition-opacity" style="color: #FFFEEE;">
+							<i class="fas fa-phone-alt text-orange-400"></i>
+							<?php echo esc_html($phone); ?>
+						</a>
+					<?php endif; ?>
+
+					<?php if ($email = get_theme_mod('topbar_email')) : ?>
+						<a href="mailto:<?php echo esc_attr($email); ?>" class="flex items-center gap-2 hover:opacity-80 transition-opacity" style="color: #FFFEEE;">
+							<i class="fas fa-envelope text-orange-400"></i>
+							<?php echo esc_html($email); ?>
+						</a>
+					<?php endif; ?>
+
+					<?php if ($reg_no = get_theme_mod('topbar_reg_no')) : ?>
+						<span class="bg-white/10 px-3 py-0.5 rounded text-[11px] font-bold tracking-tight border border-white/10 uppercase" style="color: #FFFEEE;">
+							Reg No: <?php echo esc_html($reg_no); ?>
+						</span>
+					<?php endif; ?>
 				</div>
+
 				<div class="flex gap-4 text-base">
-					<a href="#"><i class="fab fa-facebook-f"></i></a>
-					<a href="#"><i class="fab fa-twitter"></i></a>
-					<a href="#"><i class="fab fa-youtube"></i></a>
-					<a href="#"><i class="fab fa-whatsapp"></i></a>
+					<?php if ($fb_url = get_theme_mod('facebook_url')) : ?>
+						<a href="<?php echo esc_url($fb_url); ?>" target="_blank" rel="noopener noreferrer">
+							<i class="fab fa-facebook-f text-[#FFFEEE]"></i>
+						</a>
+					<?php endif; ?>
+
+					<?php if ($tw_url = get_theme_mod('twitter_url')) : ?>
+						<a href="<?php echo esc_url($tw_url); ?>" target="_blank" rel="noopener noreferrer">
+							<i class="fab fa-twitter text-[#FFFEEE]"></i>
+						</a>
+					<?php endif; ?>
+
+					<?php if ($yt_url = get_theme_mod('youtube_url')) : ?>
+						<a href="<?php echo esc_url($yt_url); ?>" target="_blank" rel="noopener noreferrer">
+							<i class="fab fa-youtube text-[#FFFEEE]"></i>
+						</a>
+					<?php endif; ?>
+
+					<?php if ($wa_url = get_theme_mod('whatsapp_url')) : ?>
+						<a href="<?php echo esc_url($wa_url); ?>" target="_blank" rel="noopener noreferrer">
+							<i class="fab fa-whatsapp visited:text-[#FFFEEE] text-[#FFFEEE]"></i>
+						</a>
+					<?php endif; ?>
 				</div>
+
 			</div>
 		</div>
 
@@ -216,14 +260,14 @@
 					<?php wp_nav_menu([
 						'theme_location' => 'primary-menu',
 						'container' => false,
-						'menu_class' => 'flex gap-8 menu'
+						'menu_class' => 'flex gap-4 menu'
 					]); ?>
 				</div>
 
 				<div class="hidden lg:flex items-center gap-4">
 
 
-					<a href="#" class="btn-common-main group relative inline-flex items-center justify-center px-10 py-4 font-black text-xs uppercase tracking-[0.2em] text-[#1E293B] transition-all duration-500 border-2 border-[#1E293B] hover:border-[#ff7722] rounded-full overflow-hidden hover:text-white">
+					<a href="<?php echo esc_url(home_url('/registration')); ?>" class="btn-common-main group relative inline-flex items-center justify-center px-3 py-4 font-black text-[11px] uppercase tracking-[0.2em] text-[#1E293B] transition-all duration-500 border-2 border-[#1E293B] hover:border-[#ff7722] rounded-full overflow-hidden  hover:text-[#FFFEEE]">
 
 						<span class="absolute inset-0 w-0 bg-[#ff7722] transition-all duration-500 ease-out group-hover:w-full"></span>
 
@@ -234,11 +278,11 @@
 					</a>
 
 
-					<a href="#" class="btn-common-main group relative inline-flex items-center justify-center px-10 py-4 font-black bg-[#ff7722] text-white text-xs uppercase tracking-[0.2em] text-[#ff7722] transition-all duration-500 border-2 border-[#ff7722] rounded-full overflow-hidden hover:text-white hover:border-[#1E293B]">
+					<a href="<?php echo esc_url(home_url('/donation')); ?>" class="btn-common-main group relative inline-flex items-center justify-center px-3 py-4 font-black bg-[#ff7722] text-[11px] uppercase tracking-[0.2em] text-[#ff7722] transition-all duration-500 border-2 border-[#ff7722] rounded-full overflow-hidden  hover:text-[#FFFEEE] hover:border-[#1E293B]">
 
-						<span class="absolute inset-0 w-0 bg-[#1E293B] transition-all duration-500 ease-out group-hover:w-full"></span>
+						<span class="absolute inset-0 w-0 bg-[#1E293B]  transition-all duration-500 ease-out group-hover:w-full"></span>
 
-						<span class="relative z-10 flex items-center gap-3">
+						<span class="relative z-10 flex items-center gap-3 text-[#FFFEEE] ">
 							Donate Now
 
 						</span>
@@ -251,17 +295,37 @@
 		</nav>
 	</header>
 
+	<div class="fixed bottom-6 right-6 z-[9999] flex flex-col gap-4">
+		<?php
+		$messenger = get_theme_mod('messenger_link');
+		$phone     = get_theme_mod('topbar_phone');
+		$whatsapp  = preg_replace('/[^0-9]/', '', $phone);
+		?>
+
+		<?php if (!empty($messenger)) : ?>
+			<a href="<?php echo esc_url($messenger); ?>" target="_blank" class="w-14 h-14 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition">
+				<i class="fab fa-facebook-messenger text-2xl text-[#FFFEEE]"></i>
+			</a>
+		<?php endif; ?>
+
+		<?php if (!empty($whatsapp)) : ?>
+			<a href="https://wa.me/<?php echo esc_attr($whatsapp); ?>" target="_blank" class="w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition">
+				<i class="fab fa-whatsapp text-2xl text-[#FFFEEE]"></i>
+			</a>
+		<?php endif; ?>
+	</div>
+
 	<div id="sidebarOverlay" class="fixed inset-0 bg-black/60 z-[1999] opacity-0 pointer-events-none hidden transition-opacity duration-300"></div>
 
 	<aside id="mobileSidebar" class="flex flex-col shadow-2xl overflow-hidden">
 		<div class="flex justify-between items-center mb-10">
 			<div class="flex items-center gap-3">
 				<div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-md">
-					<i class="fas fa-om text-white text-xl"></i>
+					<i class="fas fa-om text-[#FFFEEE] text-xl"></i>
 				</div>
-				<span class="text-white font-black tracking-tighter text-lg uppercase">Menu</span>
+				<span class="text-[#FFFEEE] font-black tracking-tighter text-lg uppercase">Menu</span>
 			</div>
-			<button id="menuClose" class="w-12 h-12 flex items-center justify-center rounded-full bg-black/10 text-white hover:bg-white/20 transition-all active:scale-90">
+			<button id="menuClose" class="w-12 h-12 flex items-center justify-center rounded-full bg-black/10 text-[#FFFEEE] hover:bg-white/20 transition-all active:scale-90">
 				<i class="fas fa-times text-2xl"></i>
 			</button>
 		</div>
@@ -280,17 +344,14 @@
 
 		<div class="mt-auto pt-8 border-t border-white/10">
 			<div class="mb-6 group">
-				<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-black/20 backdrop-blur-sm border border-white/5 mb-2">
-					<span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-					<span class="text-[10px] text-white/70 uppercase font-bold tracking-[2px]">Official Status</span>
-				</div>
-				<p class="text-[13px] text-white font-medium opacity-90 pl-1">
+
+				<p class="text-[13px] text-[#FFFEEE] font-medium opacity-90 pl-1">
 					Reg No: <span class="font-mono">C-R-A17485</span>
 				</p>
 			</div>
 
 			<div class="flex flex-col gap-3">
-				<a href="/registration" class="group relative w-full py-4 rounded-2xl border border-white/20 text-white font-bold text-center uppercase text-xs tracking-widest overflow-hidden transition-all hover:bg-white/10">
+				<a href="<?php echo esc_url(home_url('/registration')); ?>" class="group relative w-full py-4 rounded-2xl border border-white/20 text-[#FFFEEE] font-bold text-center uppercase text-xs tracking-widest overflow-hidden transition-all hover:bg-white/10">
 					<span class="relative z-10 flex items-center justify-center gap-2">
 						<i class="fas fa-user-plus text-[10px]"></i> Registration
 					</span>
@@ -298,11 +359,11 @@
 
 
 
-				<a href="#" class="group relative inline-flex items-center justify-center px-10 py-4 font-black text-[11px] uppercase tracking-[0.2em] text-white transition-all duration-500 bg-[#ff7722] rounded-xl overflow-hidden shadow-lg hover:shadow-[#ff7722]/40 active:scale-95">
+				<a href="<?php echo esc_url(home_url('/donation')); ?>" class="group relative inline-flex items-center justify-center px-10 py-4 font-black text-[11px] uppercase tracking-[0.2em] text-[#FFFEEE] transition-all duration-500 bg-[#ff7722] rounded-xl overflow-hidden shadow-lg hover:shadow-[#ff7722]/40 active:scale-95">
 
 					<span class="absolute inset-0 bg-white-900 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center ease-out"></span>
 
-					<span class="relative z-10 flex items-center gap-3 text-white">
+					<span class="relative z-10 flex items-center gap-3 text-[#FFFEEE]">
 						Donate Now
 						<i class="fas fa-plus text-[10px] transition-transform duration-500 group-hover:rotate-180"></i>
 					</span>

@@ -1,16 +1,23 @@
 <?php
+// ACF Fields
 $title    = get_field('title');
 $subtitle = get_field('subtitle');
 $image    = get_field('about_left_image');
+
+// Fetch the dynamic icon from ACF
+$damaru_icon = get_field('about_icon');
+$icon_url = !empty($damaru_icon) ? esc_url($damaru_icon['url']) : '';
+$icon_alt = !empty($damaru_icon) ? esc_attr($damaru_icon['alt']) : 'Shiva Damaru';
 ?>
 
 <section class="py-[60px] lg:py-[140px] bg-white relative overflow-hidden">
 
-    <div class="absolute top-4 right-4 lg:top-10 lg:right-20 h-12 w-12 lg:h-16 lg:w-16 animate-damaru opacity-70 z-10 pointer-events-none">
-        <img src="http://localhost/mohajot/wp-content/uploads/2026/03/s-images.png"
-            alt="Shiva Damaru"
-            class="w-full h-full object-contain">
-    </div>
+    <?php if ($icon_url) : ?>
+
+        <img src="<?php echo $icon_url; ?>"
+            alt="<?php echo $icon_alt; ?>"
+            class="w-full h-full object-contain opacity-70 absolute top-1 right-4 lg:top-4 lg:right-20 z-10 block animate-damaru transition-transform hover:scale-110">
+    <?php endif; ?>
 
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -43,7 +50,7 @@ $image    = get_field('about_left_image');
                 <div class="space-y-4 mb-8">
                     <?php if (get_field('mission')) : ?>
                         <div class="flex items-start">
-                            <div class="bg-[#ff7722]/10 rounded-full p-3 mr-4">
+                            <div class="bg-[#ff7722]/10 rounded-full p-3 mr-4 shrink-0">
                                 <i class="fas fa-bullseye text-[#ff7722] text-xl"></i>
                             </div>
                             <div class="prose max-w-none">
@@ -55,7 +62,7 @@ $image    = get_field('about_left_image');
 
                     <?php if (get_field('vision')) : ?>
                         <div class="flex items-start">
-                            <div class="bg-[#ff7722]/10 rounded-full p-3 mr-4">
+                            <div class="bg-[#ff7722]/10 rounded-full p-3 mr-4 shrink-0">
                                 <i class="fas fa-shield-alt text-[#ff7722] text-xl"></i>
                             </div>
                             <div class="prose max-w-none">
@@ -66,11 +73,8 @@ $image    = get_field('about_left_image');
                     <?php endif; ?>
                 </div>
 
-
-                <a href="#" class="btn-common-main group relative inline-flex items-center justify-center px-10 py-4 font-black text-xs uppercase tracking-[0.2em] text-[#ff7722] transition-all duration-500 border-2 border-[#ff7722] rounded-full overflow-hidden hover:text-white">
-
+                <a href="<?php echo esc_url(home_url('/about-us/')); ?>" class="group relative inline-flex items-center justify-center px-10 py-4 font-black text-xs uppercase tracking-[0.2em] text-[#ff7722] transition-all duration-500 border-2 border-[#ff7722] rounded-full overflow-hidden hover:text-white">
                     <span class="absolute inset-0 w-0 bg-[#ff7722] transition-all duration-500 ease-out group-hover:w-full"></span>
-
                     <span class="relative z-10 flex items-center gap-3">
                         বিস্তারিত দেখুন
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2">
@@ -78,17 +82,31 @@ $image    = get_field('about_left_image');
                         </svg>
                     </span>
                 </a>
-
-            
             </div>
         </div>
     </div>
 </section>
 
 <style>
+    /* Responsive Damaru CSS with Aspect Ratio */
     .animate-damaru {
+        width: 80px;
+        /* Mobile */
+        aspect-ratio: 1 / 1;
         animation: damaruBeat 2s ease-in-out infinite;
         transform-origin: center;
+    }
+
+    @media (min-width: 768px) {
+        .animate-damaru {
+            width: 120px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .animate-damaru {
+            width: 160px;
+        }
     }
 
     @keyframes damaruBeat {
@@ -102,12 +120,6 @@ $image    = get_field('about_left_image');
         50% {
             transform: scale(1.1) rotate(5deg);
             filter: drop-shadow(0 0 15px rgba(255, 119, 34, 0.8));
-        }
-    }
-
-    @media (max-width: 640px) {
-        .animate-damaru {
-            opacity: 0.4;
         }
     }
 </style>

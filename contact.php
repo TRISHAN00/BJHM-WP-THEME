@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Activities
+ * Template Name: Contact Us
  */
 get_header();
 ?>
@@ -9,8 +9,9 @@ get_header();
 <!-- Inner Banner -->
 <?php get_template_part('template-parts/sections/inner', 'banner'); ?>
 
-<!-- Activities List -->
-<?php get_template_part('template-parts/sections/activities/activities', 'list'); ?>
+<!-- CONTACT US PAGE -->
+<?php get_template_part('template-parts/sections/contact/contact', 'us'); ?>
+
 
 
 <?php get_footer(); ?>
