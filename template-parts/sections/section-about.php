@@ -16,7 +16,7 @@ $icon_alt = !empty($damaru_icon) ? esc_attr($damaru_icon['alt']) : 'Shiva Damaru
 
         <img src="<?php echo $icon_url; ?>"
             alt="<?php echo $icon_alt; ?>"
-            class="w-full h-full object-contain opacity-70 absolute top-1 right-4 lg:top-4 lg:right-20 z-10 block animate-damaru transition-transform hover:scale-110">
+            class="w-fit h-fit object-contain opacity-70 absolute top-1 right-4 lg:top-4 lg:right-20 z-10 block animate-damaru transition-transform hover:scale-110">
     <?php endif; ?>
 
     <div class="container mx-auto px-4">

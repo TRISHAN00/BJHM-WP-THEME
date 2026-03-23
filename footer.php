@@ -19,7 +19,7 @@ if ($popup_query->have_posts()) :
 					<?php endif; ?>
 				</a>
 
-				<button id="minimalClose" class="absolute -bottom-10 left-1/2 -translate-x-1/2 text-gray-400 hover:text-white text-[10px] font-black uppercase tracking-[0.4em] transition-all py-2">
+				<button id="minimalClose" class="absolute -bottom-10 left-1/2 px-4 -translate-x-1/2 text-gray-400 hover:text-white text-[10px] font-black uppercase tracking-[0.4em] transition-all py-2">
 					[ Close Window ]
 				</button>
 			</div>
@@ -77,21 +77,27 @@ endif;
 					<?php } ?>
 				</div>
 				<p class="text-gray-400 text-sm leading-relaxed"><?php echo get_bloginfo('description'); ?></p>
-				<div class="flex gap-0"> <?php
-											$social_links = [
-												['icon' => 'facebook-f', 'url' => get_theme_mod('facebook_url', '#')],
-												['icon' => 'twitter',    'url' => get_theme_mod('twitter_url', '#')],
-												['icon' => 'instagram',  'url' => get_theme_mod('instagram_url', '#')],
-												['icon' => 'youtube',    'url' => get_theme_mod('youtube_url', '#')]
-											];
 
-											foreach ($social_links as $social) : ?>
-						<a href="<?php echo esc_url($social['url']); ?>"
-							target="_blank"
-							class="w-10 h-10 bg-white/5 border border-white/10 border-r-0 last:border-r flex items-center justify-center text-gray-400 hover:bg-[#ff7722] hover:text-white transition-all">
-							<i class="fab fa-<?php echo esc_attr($social['icon']); ?>"></i>
+
+				<div class="flex gap-0 text-base">
+					<?php if ($fb_url = get_theme_mod('facebook_url')) : ?>
+						<a class="w-10 h-10 bg-white/5 border border-white/10 border-r-0 last:border-r flex items-center justify-center text-gray-400 hover:bg-[#ff7722] hover:text-white transition-all" href="<?php echo esc_url($fb_url); ?>" target="_blank" rel="noopener noreferrer">
+							<i class="fab fa-facebook-f text-[#FFFEEE]"></i>
 						</a>
-					<?php endforeach; ?>
+					<?php endif; ?>
+
+					<?php if ($tw_url = get_theme_mod('twitter_url')) : ?>
+						<a class="w-10 h-10 bg-white/5 border border-white/10 border-r-0 last:border-r flex items-center justify-center text-gray-400 hover:bg-[#ff7722] hover:text-white transition-all" href="<?php echo esc_url($tw_url); ?>" target="_blank" rel="noopener noreferrer">
+							<i class="fab fa-twitter text-[#FFFEEE]"></i>
+						</a>
+					<?php endif; ?>
+
+					<?php if ($yt_url = get_theme_mod('youtube_url')) : ?>
+						<a class=" w-10 h-10 bg-white/5 border border-white/10 border-r-0 last:border-r flex items-center justify-center text-gray-400 hover:bg-[#ff7722] hover:text-white transition-all" href="<?php echo esc_url($yt_url); ?>" target="_blank" rel="noopener noreferrer">
+							<i class="fab fa-youtube text-[#FFFEEE]"></i>
+						</a>
+					<?php endif; ?>
+
 				</div>
 			</div>
 
